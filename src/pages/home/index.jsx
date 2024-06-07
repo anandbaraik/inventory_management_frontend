@@ -12,6 +12,12 @@ export const Home = () => {
 	const loading = useSelector((state) => state.loading);
 	const [editingData, setEditingData] = useState({});
 
+	const deleteHandler = (item) => {
+		if(window.confirm(`Are you sure?`)) {
+			dispatch(deleteItem(item._id));
+		}
+	}
+
 	useEffect(() => {
 		dispatch(fetchItem());
 	}, []);
@@ -80,7 +86,7 @@ export const Home = () => {
 											<td className="w-[25%] items-center flex justify-around">
 												<button
 													className="text-red-500"
-													onClick={() => dispatch(deleteItem(item._id))}>
+													onClick={() => deleteHandler(item)}>
 													Remove
 												</button>
 												<button
